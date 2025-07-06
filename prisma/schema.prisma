@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Team {
+  id           Int    @id @default(autoincrement())
+  name         String
+  city         String
+  abbreviation String @unique
+  conference   String // "Eastern" or "Western"
+  division     String // "Atlantic", "Central", "Southeast", "Northwest", "Pacific", "Southwest"
+  
+  // Relations
+  players      Player[]
+  homeGames    Game[] @relation("HomeTeam")
+  awayGames    Game[] @relation("AwayTeam")
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@map("teams")
+}
+
+model Player {
+  id           Int    @id @default(autoincrement())
+  name         String
+  position     String // "PG", "SG", "SF", "PF", "C"
+  jerseyNumber Int
+  teamId       Int
+  
+  // Relations
+  team         Team   @relation(fields: [teamId], references: [id])
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@map("players")
+}
+
+model Game {
+  id          Int      @id @default(autoincrement())
+  date        DateTime
+  homeTeamId  Int
+  awayTeamId  Int
+  homeScore   Int
+  awayScore   Int
+  season      String   // "2023-24"
+  gameType    String   // "Regular Season", "Playoffs"
+  
+  // Relations
+  homeTeam    Team     @relation("HomeTeam", fields: [homeTeamId], references: [id])
+  awayTeam    Team     @relation("AwayTeam", fields: [awayTeamId], references: [id])
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("games")
+}
