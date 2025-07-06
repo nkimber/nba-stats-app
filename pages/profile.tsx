@@ -1,4 +1,5 @@
 import Layout from '../components/Layout'
+import Avatar from '../components/Avatar'
 
 export default function Profile() {
   return (
@@ -7,12 +8,17 @@ export default function Profile() {
         <div className="mx-auto max-w-3xl">
           <div className="bg-white shadow overflow-hidden sm:rounded-lg">
             <div className="px-4 py-5 sm:px-6">
-              <h1 className="text-3xl font-bold leading-tight text-gray-900">
-                User Profile
-              </h1>
-              <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                Personal details and settings.
-              </p>
+              <div className="flex items-center space-x-6">
+                <Avatar initials="JD" size="xl" />
+                <div>
+                  <h1 className="text-3xl font-bold leading-tight text-gray-900">
+                    John Doe
+                  </h1>
+                  <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                    Personal details and settings.
+                  </p>
+                </div>
+              </div>
             </div>
             <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
               <dl className="sm:divide-y sm:divide-gray-200">
