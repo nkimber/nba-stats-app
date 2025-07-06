@@ -60,7 +60,7 @@ export default function Dashboard() {
       <div className="px-4 py-6 sm:px-0">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">NBA Stats Dashboard</h1>
+          <h1 className="text-3xl font-bold text-gray-900">NBA Archie1 Stats Dashboard</h1>
           <p className="mt-2 text-gray-600">
             Track your favorite teams and stay updated with the latest games
           </p>
